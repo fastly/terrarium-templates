@@ -1,0 +1,20 @@
+{
+  "name": "@wasm/doh_example",
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "gulp --gulpfile ./build.ts"
+  },
+  "devDependencies": {
+    "@wasm/studio-utils": "*",
+    "gulp": "~3.9.1",
+    "ts-node": "~5.0.0",
+    "typescript": "~2.7.2"
+  },
+  "wasmStudio": {
+    "name": "DNS-over-HTTPS Example",
+    "description": "# DNS-over-HTTPS example\n\nDNS-over-HTTPS (RFC8484) uses HTTP/2 to tunnel DNS traffic. This example demonstrates the use of the DNS API.",
+    "icon": "rust-lang-file-icon"
+  }
+}
+
