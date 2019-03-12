@@ -1,6 +1,6 @@
 import { run_user_kvs, Request, KVStore, Response, Time } from "./http_guest";
 import {
-    hmac, faScalarReduce, faScalarMult, SIGN_BYTES, SIGN_PUBLICKEYBYTES, signVerify,
+    hmac, faScalarReduce, faPointMult, SIGN_BYTES, SIGN_PUBLICKEYBYTES, signVerify,
     faPointValidate, FA_SCALARBYTES, FA_POINTBYTES
 } from "./crypto";
 import {
@@ -103,7 +103,7 @@ function loginGetBlindSaltAndNonce(req: Request): Response {
     if (r_and_pk) {
         r = r_and_pk.subarray(0, FA_POINTBYTES);
     }
-    let blind_salt = faScalarMult(r, blind_auth_info);
+    let blind_salt = faPointMult(r, blind_auth_info);
     if (blind_salt === null) {
         response.body_string = "Invalid auth info (identity)";
         return response;
@@ -229,7 +229,7 @@ function signupGetBlindSalt(req: Request): Response {
             r = kvsGet(signup_r_key) || r;
         }
     }
-    let blind_salt = faScalarMult(r, blind_auth_info);
+    let blind_salt = faPointMult(r, blind_auth_info);
     if (blind_salt === null) {
         response.body_string = "Invalid auth info (identity)";
         return response;
